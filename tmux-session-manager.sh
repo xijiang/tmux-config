@@ -5,24 +5,14 @@
 # ============================================
 
 # Use current hostname (lower case) to identify the machine
-HOSTNAME=$(hostname | tr '[:upper:]' '[:lower:]')
-
-# If the hostname isn't one of the known ones, use 'default'
-case "$HOSTNAME" in
-    simple|amd|svr|wsl|lt)
-        MACHINE="$HOSTNAME"
-        ;;
-    *)
-        MACHINE="default"
-        ;;
-esac
+MACHINE=$(hostname | cut -d. -f1 | tr '[:upper:]' '[:lower:]')
 
 SESSION_NAME="$(echo $MACHINE | sed 's/./\u&/')-Session" # E.g., 'Simple-Session'
 SETUP_FILE="$HOME/.config/tmux/setup-$MACHINE.conf"
 
-# Ensure the setup file exists, otherwise fallback to setup-simple.conf
+# Ensure the setup file exists, otherwise fallback to setup-svr.conf
 if [ ! -f "$SETUP_FILE" ]; then
-    SETUP_FILE="$HOME/.config/tmux/setup-simple.conf"
+    SETUP_FILE="$HOME/.config/tmux/setup-svr.conf"
 fi
 
 # Check if tmux is already running

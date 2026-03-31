@@ -12,12 +12,13 @@ computers: `simple`, `amd`, `svr`, `wsl`, and `lt`.
 - **Unified Config**: Key bindings (Emacs mode), status bar, and
   settings are shared across all machines.
 - **Custom Layouts**: Each machine has its own layout file (e.g.,
-  `setup-simple.conf`).
+  `setup-svr.conf`).
 
 ## How it Works
 
-The configuration uses your machine's **hostname** (converted to
-lowercase) to determine which setup file to load.
+The configuration uses the first part of your machine's **hostname**
+(before the first dot, converted to lowercase) to determine which
+setup file to load.
 
 - **Session Name**: `[Hostname]-Session` (e.g., `Simple-Session`).
 - **Setup File**: `~/.config/tmux/setup-[hostname].conf`.
