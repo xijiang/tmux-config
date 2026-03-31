@@ -18,7 +18,8 @@ computers: `simple`, `amd`, `svr`, `wsl`, and `lt`.
 
 The configuration uses the first part of your machine's **hostname**
 (before the first dot, converted to lowercase) to determine which
-setup file to load.
+setup file to load. If a matching `setup-[hostname].conf` is not found,
+it defaults to `setup-svr.conf`.
 
 - **Session Name**: `[Hostname]-Session` (e.g., `Simple-Session`).
 - **Setup File**: `~/.config/tmux/setup-[hostname].conf`.

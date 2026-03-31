@@ -22,6 +22,6 @@ if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
 else
     echo "Creating new session '$SESSION_NAME' for '$MACHINE'..."
     tmux new-session -s "$SESSION_NAME" -d
-    tmux source-file "$SETUP_FILE"
+    tmux source-file -t "$SESSION_NAME" "$SETUP_FILE"
     exec tmux attach-session -t "$SESSION_NAME"
 fi
