@@ -21,7 +21,15 @@ if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
     exec tmux attach-session -t "$SESSION_NAME"
 else
     echo "Creating new session '$SESSION_NAME' for '$MACHINE'..."
-    tmux new-session -s "$SESSION_NAME" -d
-    tmux source-file -t "$SESSION_NAME" "$SETUP_FILE"
-    exec tmux attach-session -t "$SESSION_NAME"
-fi
+    # Determine the initial window name
+    if [[ "$MACHINE" == "simple" || "$MACHINE" == "amd" ]]; then
+        INIT_NAME="status"
+    else
+        INIT_NAME="main"
+    fi
+
+    tmux new-session -s "$SESSION_NAME" -n "$INIT_NAME" -d
+    sleep 0.1
+    # Chain attach and source for compatibility with older tmux (<3.2)
+    exec tmux attach-session -t "$SESSION_NAME" \; source-file "$SETUP_FILE"
+    fi

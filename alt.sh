@@ -10,6 +10,5 @@ else
     echo "Creating new session '$SESSION_NAME' with setup-session.conf..."
     # Create the session detached, source the setup, then attach
     tmux new-session -d -s "$SESSION_NAME"
-    tmux source-file -t "$SESSION_NAME" ~/.config/tmux/setup-session.conf
-    exec tmux attach-session -t "$SESSION_NAME"
+    exec tmux attach-session -t "$SESSION_NAME" \; source-file ~/.config/tmux/setup-session.conf
 fi

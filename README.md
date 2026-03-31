@@ -37,11 +37,9 @@ Each window is split into two panes (left/right) for multi-tasking.
 
 ### 1. Link Configuration
 
-Ensure these files are located in `~/.config/tmux/`:
-
 ```bash
-mkdir -p ~/.config/tmux
-# Clone or link these files into ~/.config/tmux/
+cd ~/.config
+git clone https://github.com/xijiang/tmux-config tmux
 ```
 
 ### 2. Setup Alias
@@ -51,8 +49,7 @@ You can use the provided script to add the `mytmux` alias to your
 `$HOME/.config/tmux/tmux-session-manager.sh`:
 
 ```bash
-chmod +x setup-alias.sh
-./setup-alias.sh
+.config/tmux/setup-alias.sh
 source ~/.bashrc
 ```
 
